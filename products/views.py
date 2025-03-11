@@ -25,3 +25,6 @@ class ProductViewSet(viewsets.ModelViewSet):
 
     # Ordering
     ordering_fields = ['price', 'created_at']  # Allows sorting by price & date
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)  # Set the user when creating a product

@@ -8,7 +8,9 @@ class ProductVariationSerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
     variations = ProductVariationSerializer(many=True, read_only=True)
+    user = serializers.ReadOnlyField(source='user.username')
+
 
     class Meta:
         model = Product
-        fields = ['id', 'name', 'description', 'price', 'image', 'created_at', 'variations']
+        fields = ['id', 'name', 'description', 'price', 'image', 'created_at', 'variations', 'user']
